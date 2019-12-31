@@ -1,0 +1,40 @@
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+public class TaskButton extends JButton
+{
+	private Task task;
+	
+	public TaskButton(Task task)
+	{
+		this.task = task;
+		
+		setText(this.task.toString());
+		addActionListener(new TaskButtonListener());
+	
+	}
+	private class TaskButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			//turn grey
+			
+			
+			//set to complete task
+			if (task.isComplete()) {
+			task.setComplete(false);
+			setText(task.toString());
+			setBackground(Color.WHITE);
+			} else {
+			task.setComplete(true);
+			setText(task.toString());
+			setBackground(Color.GRAY);
+			}
+			
+		}
+	}
+
+}
