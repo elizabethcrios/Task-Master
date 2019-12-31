@@ -1,0 +1,47 @@
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class ToDoListPanel extends JPanel
+{
+	ToDoList list; 
+	public String name;
+	private JLabel listLabel;
+	private JButton taskButton;
+	
+	
+	
+	public ToDoListPanel (String name)
+	{
+
+		this.list = new ToDoList(name);
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		JLabel inputLabel = new JLabel(name);
+		add(inputLabel);
+		
+	}
+	
+	public void addTask(Task t) 
+	{
+		list.addTask(t);
+		
+		TaskButton taskButton = new TaskButton(t);
+		add(taskButton);
+		
+	}
+	public void showWorkDialog()
+	{
+		if(list.getWork() == null)
+		{
+			JOptionPane.showMessageDialog(null, "You are all done, enjoy!", "Tasks are done", JOptionPane.ERROR_MESSAGE);
+		} else {
+			String taskName = list.getWork().getDescription();
+			JOptionPane.showMessageDialog(null, "You should complete " + taskName + " next!");
+		}
+	}
+	
+	
+	
+}
