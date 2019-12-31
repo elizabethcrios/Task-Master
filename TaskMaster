@@ -1,0 +1,95 @@
+/**
+ * 
+ * @author elizabethrios370
+ *
+ */
+public class TaskMaster {
+	public static void main(String[] args)
+	{
+		
+		
+		
+		
+		String description = ("feed dog");
+		int priority = 4;
+//using my is complete and setting completion
+		System.out.println("Task 1");
+		Task Task1 = new Task(description, priority );
+		
+		System.out.println(Task1);
+
+		Task1.setComplete (true);
+
+		System.out.println("Task 1 is complete: " + Task1.isComplete());
+
+
+		System.out.println(Task1);
+
+		String description2 = ("do homework");
+		int priority2 = 10;
+		System.out.println(" ");
+		System.out.println("Task 2");
+		Task Task2 = new Task(description2);
+	
+//using my get priority and changing priority
+		System.out.println(Task2);
+		System.out.println("Change Task 2 priority: 20");
+		Task2.setPriority(20);
+		System.out.println("Task 2 priority: "+ Task2.getPriority());
+		System.out.println(Task2);
+
+		String description3 = "feed dog";
+		int priority3 = 1;
+		Task Task3 = new Task(description3);
+		System.out.println(" ");
+		System.out.println("Task 3:");
+		Task1.setCategory(Task.taskType.SCHOOL);
+		Task2.setCategory(Task.taskType.WORK);
+		Task3.setCategory(Task.taskType.FUN);
+		System.out.println(Task3);
+		System.out.println(" ");
+		System.out.println("Checking if task 1 and 3 are equal...");
+// testing out if each task is equal to one another
+		if ((Task1.getDescription()).equals(Task3.getDescription()))
+		{
+			System.out.println("Task 1 and 3 are equal");
+		} else {
+			System.out.println("Task 1 and 3 are not equal");
+		}
+		System.out.println(" ");
+		System.out.println("Comparing Task 1 and 2...");
+		double Task1priority = Task1.getPriority();
+		double Task2priority = Task2.getPriority();
+		if (Task1priority < Task2priority)
+		{
+			System.out.println("Task 2 is more important than task 1.");
+		}
+		if (Task1priority > Task2priority)
+		{
+			System.out.println("Task 1 is more important than task 2.");
+		}
+		if (Task1priority == Task2priority)
+		{
+			System.out.println("Task 1 and 2 have the same priorities.");
+		}
+		ToDoList newList = new ToDoList("newList");
+		newList.addTask(Task1);
+		newList.addTask(Task2);
+		newList.addTask(Task3);
+
+		newList.addTask("Do math homework.");
+		
+	
+		
+		System.out.println(newList);
+		System.out.println(newList.getWork());
+		
+		
+		
+		
+	}
+		
+
+}
+
+
