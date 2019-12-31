@@ -1,0 +1,104 @@
+// implements the comparable interface// 
+public Task implements Comparable<Task>
+{
+  public enum { PERSONAL, WORK, SCHOOL, FUN, NONE } 
+  private string description;
+  private int priority; 
+  private boolean complete; 
+  private TaskType Category;
+  
+  public void setCategory(taskType category)
+  {
+    this.Category = category;
+  }
+  public taskType getCategory
+  {
+    returns Category;
+  }
+  
+  //Default Constructor//
+  public Task(String description)
+  {
+    this.description = description;
+    this.priority = 0;
+    this.complete = false;
+    this.Category = NONE;
+  }
+  
+  public Task(String description, int priority)
+  {
+    this.description = description;
+    this.priority = 0;
+    this.complete = false;
+    this.Category = NONE;
+  }
+  
+  public String getDescription
+  {
+    return description;
+  }
+  public void setDescription
+  {
+    this.description = description;
+  }
+  public int getPriority
+  {
+    return priority;
+  }
+  public void setPriority
+  {
+     this.priority = priority;
+  }
+  public boolean isComplete()
+	{
+		return complete;
+	}
+	public void setComplete(boolean complete)
+	{
+		this.complete = complete;
+	}
+  	public String toString()
+	{
+		String result = "";
+		if(complete) {
+			result = result + "[X]";
+		
+		} else {
+			result += "[ ]";
+		}
+		result += description + ", " + priority + ", " + Category;
+		return result;
+	}
+  public int compareTo(Task p)
+	{
+		//if both given tasks are completed
+		if(this.complete == p.complete)
+		{
+			//check to see if priorities are the same
+			if(this.priority == p.priority)
+			{
+				return 0;
+			}
+			//move "this" after "p" if this is less than p
+			else if(this.priority < p.priority)
+			{
+				return -1;
+			}
+			//else the p task will go first
+			else
+			{
+				return 1;
+			}
+		}
+		//make sure both tasks are complete
+		else if(this.complete && !p.complete)
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	
+}
