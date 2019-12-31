@@ -1,0 +1,102 @@
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.xml.bind.Marshaller.Listener;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * Lesson 18-19: Activity - Task Master GUI
+ * 
+ * This class represents the main TaskMaster JPanel. 
+ * 
+ * It contains a ToDoListPanel and the control sub-panel.
+ * 
+ * @author CS121 Instructors
+ * @version [semester]
+ * @author [your name]
+ */
+@SuppressWarnings("serial")
+public class TaskMasterPanel extends JPanel
+{	
+	/**
+	 * Creates a new TaskMasterPanel.
+	 */
+	private TaskButton taskButton;
+	private JTextField inputTextField;
+	private ToDoListPanel listPanel;
+	private JButton getWorkButton;
+	private JTextField descriptionField;
+	private JButton addTaskButton;
+	private JScrollPane toDoListScrollPane;
+	{
+
+		this.setPreferredSize(new Dimension(500, 400));	
+
+
+
+		listPanel = new ToDoListPanel("My To Do List");
+		listPanel.setName("My To Do");
+		setLayout(new BorderLayout());
+		add(listPanel, BorderLayout.CENTER);
+
+		JPanel controlPanel = new JPanel();
+		add(controlPanel, BorderLayout.SOUTH);
+
+		listPanel.addTask(new Task("Task 1"));
+		listPanel.addTask(new Task("Task 2"));
+		listPanel.addTask(new Task("Task 3"));
+
+		getWorkButton = new JButton ("Get Work");
+		getWorkButtonListener ListenerWork = new getWorkButtonListener();
+		getWorkButton.addActionListener(ListenerWork);
+
+
+		descriptionField = new JTextField(15);
+		controlPanel.add(descriptionField);
+		addTaskButtonListener ListenerTask = new addTaskButtonListener();
+		addTaskButton = new JButton("Add Task");
+		addTaskButton.addActionListener(ListenerTask);
+
+		JScrollPane toDoListScrollPane = new JScrollPane(listPanel);
+		toDoListScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		toDoListScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(toDoListScrollPane, BorderLayout.CENTER);
+
+		controlPanel.add(addTaskButton);
+		controlPanel.add(getWorkButton);
+		
+	}
+
+	private class getWorkButtonListener implements ActionListener 
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+
+			listPanel.showWorkDialog();
+
+		}
+	}
+
+	private class addTaskButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+
+			String input = descriptionField.getText();
+			Task task = new Task(input);
+			listPanel.addTask(task);
+			listPanel.revalidate();
+		}
+
+
+	}
+
+
+}
