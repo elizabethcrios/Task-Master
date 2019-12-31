@@ -1,0 +1,80 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ToDoList implements ToDoListInterface
+{
+	private String name;
+	private ArrayList<Task> taskList;
+	//Constructor
+	public ToDoList(String name)
+	{
+		this.name = name;
+		this.taskList = new ArrayList<Task>();
+	}
+	public String toString()
+	{
+		String result = "-------------\n" + 
+				"My ToDo List\n" + 
+				"-------------\n" +
+				" ";
+											
+						
+			for (Task tasks: taskList) 
+			{
+			result = result + tasks;
+			}
+		return result;
+	}
+	public String getName()
+	{
+		return name;
+	}
+
+
+
+	@Override
+	public void addTask(Task task)
+	{
+		taskList.add(task);
+		
+	}
+
+	@Override
+	public void addTask(String description) 
+	{
+		Task t = new Task(description);
+		taskList.add(t);
+		
+	}
+	public void addTask(String description, Task.taskType Category)
+	{
+		Task newTask = new Task(description);
+		newTask.setCategory(Category);
+		taskList.add(newTask);
+	}
+
+	@Override
+	public Task getWork() {
+		// TODO Auto-generated method stub
+		
+		Task result = null;
+		if(!taskList.isEmpty()){
+			Task maxTask = Collections.max(taskList);
+			if(!maxTask.isComplete()) {
+				result = maxTask;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<Task> getTaskList() {
+		ArrayList<Task> taskList2 = new ArrayList<Task>();
+		for (Task Task : taskList)
+		{
+			taskList.add(Task);
+		}
+		return taskList2;
+	}
+
+}
